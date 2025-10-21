@@ -1,0 +1,87 @@
+# ============================================================
+#  DEVNOTES STACK – FASTAPI + POSTGRES + PGADMIN
+#  Author: Markam | Role: DevOps/Backend Engineer
+# ------------------------------------------------------------
+#  Purpose:
+#  - Define a reproducible, multi-service development environment.
+#  - Orchestrates an async FastAPI backend + PostgreSQL database.
+#  - Demonstrates container networking, environment isolation,
+#    persistent storage, and health monitoring.
+# ============================================================
+
+# version: "3.9"
+
+services:
+  # ----------------------------------------------------------
+  # 1. POSTGRES DATABASE SERVICE
+  # ----------------------------------------------------------
+  db:
+    image: postgres:15                     # Stable, production-grade PostgreSQL version
+    container_name: devnotes_db
+    restart: always                        # Auto-restart container if it stops or host reboots
+    environment:
+      POSTGRES_USER: postgres              # Default DB superuser
+      POSTGRES_PASSWORD: postgres          # Example password (change in prod)
+      POSTGRES_DB: devnotes                # Database name created on startup
+    ports:
+      - "5432:5432"                        # Expose DB port for local development tools
+    volumes:
+      - pgdata:/var/lib/postgresql/data    # Persistent volume for DB data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]   # Built-in PostgreSQL readiness probe
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - devnotes_net
+
+  # ----------------------------------------------------------
+  # 2. FASTAPI BACKEND SERVICE
+  # ----------------------------------------------------------
+  web:
+    build:
+      context: .                           # Build image from Dockerfile in current directory
+      dockerfile: Dockerfile
+    container_name: devnotes_web
+    restart: always
+    env_file:
+      - .env                               # Load environment variables (e.g. DB_URL, PORT)
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@db:5432/devnotes                                      # Internal network DB URL (async driver for FastAPI)
+
+    ports:
+      - "8000:8000"                        # Map container port to host for API access
+    depends_on:
+      db:
+        condition: service_healthy          # Start ONLY when db healthcheck is Succeeds
+    volumes:
+      - .:/app                             # Mount local source code for live reload for dev
+    command: >
+      sh -c "uvicorn main:app --host 0.0.0.0 --port 8000 --reload"    # Launch with reload
+    networks:
+      - devnotes_net
+
+  # ----------------------------------------------------------
+  # 3. PGADMIN SERVICE (OPTIONAL)
+  # ----------------------------------------------------------
+  pgadmin:
+    image: dpage/pgadmin4                  # Web-based Postgres admin interface
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@local.dev
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"      
+    depends_on:
+      - db
+    networks:
+      - devnotes_net
+
+# ------------------------------------------------------------
+# Named volume for database persistence across rebuilds
+# ------------------------------------------------------------
+volumes:
+  pgdata:
+
+networks:
+  devnotes_net:
+    driver: bridge

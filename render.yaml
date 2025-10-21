@@ -1,0 +1,36 @@
+# ============================================================
+#  RENDER DEPLOY CONFIG – DevNotes FastAPI Backend
+#  Author: Markam | DevOps/Backend Engineer
+# ------------------------------------------------------------
+#  Overview:
+#   - Defines Render’s deployment behavior for the backend.
+#   - Works with GitHub CI/CD (auto-deploy via Render API).
+#   - Uses environment variables injected via Render dashboard.
+# ============================================================
+
+services:
+  - type: web
+    name: mastery-phase1-1-devnote-api
+    env: python
+    plan: free
+
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+
+    startCommand: ./run_start.sh
+
+    envVars:
+      # ---- Runtime Environment ----
+      - key: APP_ENV
+        value: prod
+      - key: PORT
+        value: 8000
+
+      # db 
+      - key: APP_ENV
+        value: prod
+      - key: DATABASE_URI
+        value: DB_URL_INTERNAL
+      - key: SECRET_KEY
+        value: SECRET_KEY

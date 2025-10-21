@@ -1,0 +1,11 @@
+
+.git
+/__pycache__
+*.log
+/logs
+
+info
+test
+test_note.py
+test*
+/thrash
