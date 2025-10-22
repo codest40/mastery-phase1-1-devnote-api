@@ -38,7 +38,7 @@ jobs:
           --health-retries=5
 
     env:
-      EXTERNAL_DB_URL_FOR_TEST: postgresql://postgres:postgres@postgres:5432/devnotes_test
+      EXTERNAL_DB_URL_FOR_TEST: postgresql://postgres:postgres@localhost:5432/devnotes_test
       PYTHONUNBUFFERED: 1
 
     steps:
