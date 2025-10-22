@@ -33,10 +33,11 @@ settings = Settings()
 # =========================
 # If Render sets RENDER=true automatically, else fallback to dev
 render_flag = os.environ.get("RENDER", "").lower() == "true"
+
 env = (
     settings.environment
     or ("render" if render_flag else None)
-    or os.environ.get("ENVIRONMENT", "")
+    or os.environ.get("ENVIRONMENT", "").lower()
     or "local" 
 ).lower()
 
