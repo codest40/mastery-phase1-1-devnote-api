@@ -10,9 +10,9 @@ import logging
 configure_logging(settings.log_level)
 app = FastAPI(title="DevNotes API", version="0.1.0")
 # Mount static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="./static"), name="static")
 # Templates
-templates = Jinja2Templates(directory="app/templates")
+templates = Jinja2Templates(directory="templates")
 
 app.include_router(notes.router)
 
