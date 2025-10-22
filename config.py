@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     # URLs
     database_url: str | None = None           # local (Docker)
     external_db_url: str | None = None        # cloud DB (AWS, GitHub Actions, etc.)
-    internal_db_url: str | None = None        # Render internal DB
+    internal_db_url: str | None = Field(default=None, alias="db_url_internal")        # Render internal DB
 
     # Environment flags (auto-detect)
     environment: str | None = None
