@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     # URLs
     database_url: str | None = None           # local (Docker)
     external_db_url: str | None = None        # cloud DB (AWS, GitHub Actions, etc.)
-    internal_db_url: str | None = Field(default=None, alias="db_url_internal")        # Render internal DB
+    db_url_internal: str | None = None        # Render internal DB
 
     # Environment flags (auto-detect)
     environment: str | None = None
@@ -47,7 +47,7 @@ print(f"Environmental Variable Found: {env}")
 #   DB SELECTION LOGIC
 # =========================
 if env == "render":
-    db_url = settings.internal_db_url
+    db_url = settings.db_url_internal
 elif env in ("github", "aws", "cicd"):
     db_url = settings.external_db_url
 else:
