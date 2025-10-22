@@ -34,3 +34,18 @@ services:
         value: DB_URL_INTERNAL
       - key: SECRET_KEY
         value: SECRET_KEY
+
+
+# Deploy with docker instead of Render python
+#services:
+#  - type: web
+#    name: devnotes-backend
+#    env: docker
+#    dockerfilePath: ./Dockerfile
+#    plan: free
+#    envVars:
+#      - key: APP_ENV
+#        value: prod
+#      - key: SECRET_KEY
+#        sync: false
+
