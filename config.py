@@ -37,10 +37,11 @@ render_flag = os.environ.get("RENDER", "").lower() == "true"
 env = (
     settings.environment
     or ("render" if render_flag else None)
-    or os.environ.get("ENVIRONMENT", "").lower()
+    or os.environ.get("ENVIRONMENT", "")
     or "local" 
 ).lower()
 
+print(f"Environmental Variable Found: {env}")
 
 # =========================
 #   DB SELECTION LOGIC
