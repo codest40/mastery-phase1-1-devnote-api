@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime, func, Boolean
 from db import Base
 
-class Note(Base):
-    __tablename__ = "notes"
+class DevNote(Base):
+    __tablename__ = "devnotes"
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255), nullable=False)
     content = Column(Text, nullable=True)

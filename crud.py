@@ -1,7 +1,7 @@
 from sqlalchemy import select, update, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List, Optional
-from models import Note
+from models import DevNote as Note
 from schemas import NoteCreate, NoteUpdate
 
 async def create_note(db: AsyncSession, note_in: NoteCreate) -> Note:
