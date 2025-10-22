@@ -1,0 +1,100 @@
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: #f5f7fb;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h1 { margin-top: 20px; color: #333; }
+
+#statusPanel {
+  margin: 15px 0;
+  background: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  width: 90%;
+  max-width: 500px;
+  font-size: 14px;
+}
+
+#loading { display: none; margin-bottom: 10px; }
+
+form {
+  margin: 15px 0;
+  background: white;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 90%;
+  max-width: 500px;
+}
+
+input[type="text"] {
+  flex: 1 1 45%;
+  padding: 10px 14px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border 0.2s;
+}
+
+input[type="text"]:focus { border-color: #007bff; }
+
+button {
+  background: #007bff;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex: 1 1 100%;
+}
+
+button:hover { background: #005fcc; }
+
+#notesContainer {
+  width: 90%;
+  max-width: 600px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.note {
+  background: white;
+  padding: 16px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note:hover { transform: translateY(-2px); }
+
+.note h3 { margin: 0 0 6px; color: #222; }
+.note p { margin: 0; color: #555; font-size: 14px; }
+
+.note button {
+  flex: 0 0 auto;
+  margin-left: 10px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+@media (max-width: 500px) {
+  form { flex-direction: column; }
+  input[type="text"] { flex: 1 1 100%; }
+  .note { flex-direction: column; align-items: flex-start; }
+}

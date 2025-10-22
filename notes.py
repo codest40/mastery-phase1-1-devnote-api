@@ -6,6 +6,7 @@ from db import get_db
 
 router = APIRouter(prefix="/notes", tags=["notes"])
 
+
 @router.post("/", response_model=schemas.NoteOut, status_code=status.HTTP_201_CREATED)
 async def create_note(note_in: schemas.NoteCreate, db: AsyncSession = Depends(get_db)):
     return await crud.create_note(db, note_in)

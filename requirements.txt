@@ -1,6 +1,7 @@
 fastapi
 uvicorn[standard]
 SQLAlchemy
+Jinja2
 asyncpg
 psycopg2
 alembic
