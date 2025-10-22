@@ -33,6 +33,8 @@ settings = Settings()
 # =========================
 # If Render sets RENDER=true automatically, else fallback to dev
 render_flag = os.environ.get("RENDER", "").lower() == "true"
+if render_flag:
+  db_url_internal = os.environ.get("DB_URL_INTERNAL", "")
 
 env = (
     settings.environment
