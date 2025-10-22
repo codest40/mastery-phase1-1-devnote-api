@@ -2,6 +2,7 @@ fastapi
 uvicorn[standard]
 SQLAlchemy
 asyncpg
+psycopg2
 alembic
 pydantic
 pydantic-settings
