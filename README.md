@@ -84,17 +84,29 @@ DevOps Lifecycle Readiness: Built foundation for pipeline automation and product
 
  
 #  Tech Stack
+
 Layer	Tools & Technologies
+
 Language	Python 3.11 (Async I/O)
+
 Framework	FastAPI (ASGI)
+
 ORM	SQLAlchemy 2 (Async) + asyncpg
+
 Database	PostgreSQL 15
+
 Infrastructure	Docker, Docker Compose
+
 Admin Tool	pgAdmin 4
+
 Configuration	Pydantic Settings, .env files
+
 Logging	Python Logging Module + Rotating File Handler
+
 Server	Uvicorn (Dev) / Gunicorn (Prod ready)
+
 Version Control	Git, GitHub (Workflows ready)
+
 OS Env	Linux (Debian base)
 
 
