@@ -70,8 +70,6 @@ Testing & Validation	API endpoint validation via FastAPI interactive docs and CL
 
 #  Conceptual Understanding Gained
 
-Async Architecture: Event-loop based non-blocking I/O vs threaded I/O, and why async is crucial for high-throughput APIs.
-
 Environment Abstraction: One config file auto-detecting execution context (local, CI/CD, cloud).
 
 Service Orchestration: Using Docker Compose for multi-container coordination before moving to Kubernetes.
