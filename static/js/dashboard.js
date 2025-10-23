@@ -1,4 +1,5 @@
 // /static/js/dashboard.js
+
 async function loadDashboard() {
   try {
     const res = await fetch("/stats");
@@ -13,4 +14,10 @@ async function loadDashboard() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", loadDashboard);
+document.addEventListener("DOMContentLoaded", () => {
+  // Initial dashboard load
+  loadDashboard();
+
+  // Auto-refresh dashboard every 5 seconds
+  setInterval(loadDashboard, 5000);
+});

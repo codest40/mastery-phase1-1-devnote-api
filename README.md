@@ -22,7 +22,7 @@ pgAdmin 4 integration for live DB management.
 
 Dynamic environment detection via Pydantic Settings (local | github | render | aws) and automatic DB URL switching.
 
-#  Advanced logging architecture:
+  Advanced logging architecture:
 Multi-logger setup (audit, error, security, system, access, admin, event) with rotation & stream handlers.
 
 Clean project modularization:
@@ -55,17 +55,27 @@ Internal Docker networking: Containers communicate via bridge network (db, web, 
 API tests via curl / HTTPie / FastAPI docs.
 
 # Technical Competencies Acquired
-Category	Skills Demonstrated
-Backend Development	FastAPI (ASGI), Pydantic Models, CRUD, Async/Await, Dependency Injection
-Database Design	PostgreSQL schemas, ORM modeling, Async transactions, Commit management
-Environment Configuration	Pydantic Settings, .env handling, environment auto-switching (local/github/render/aws)
-Logging & Monitoring	Multi-channel log architecture, RotatingFileHandler, structured logs
-Containerization	Dockerfile optimization, multi-service docker-compose, healthchecks, volumes, networking
-DevOps Principles	Environment isolation, infra as code, build automation, config management
-Deployment Readiness	Async server (Uvicorn), portable image for Render/AWS deployments
-Version Control & CI/CD Foundations	GitHub Actions ready structure, environment-safe secrets management design
-PostgreSQL Admin	pgAdmin integration, connection health monitoring, persistent volumes
-Testing & Validation	API endpoint validation via FastAPI interactive docs and CLI tools
+Category:	Skills Demonstrated
+
+Backend Development:	FastAPI (ASGI), Pydantic Models, CRUD, Async/Await, Dependency Injection
+
+Database Design:	PostgreSQL schemas, ORM modeling, Async transactions, Commit management
+
+Environment Configuration:	Pydantic Settings, .env handling, environment auto-switching (local/github/render/aws)
+
+Logging & Monitoring:	Multi-channel log architecture, RotatingFileHandler, structured logs
+
+Containerization:	Dockerfile optimization, multi-service docker-compose, healthchecks, volumes, networking
+
+DevOps Principles:	Environment isolation, infra as code, build automation, config management
+
+Deployment Readiness:	Async server (Uvicorn), portable image for Render/AWS deployments
+
+Version Control & CI/CD Foundations:	GitHub Actions ready structure, environment-safe secrets management design
+
+PostgreSQL Admin:	pgAdmin integration, connection health monitoring, persistent volumes
+
+Testing & Validation:	API endpoint validation via FastAPI interactive docs and CLI tools
 
 
 #  Conceptual Understanding Gained
