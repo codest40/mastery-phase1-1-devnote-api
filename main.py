@@ -3,16 +3,23 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.ext.asyncio import AsyncSession
 import crud, notes
-from config import setup_loggers as configure_logging, settings, get_env
+from error import  err_router, error_tracking_middleware, global_exception_handler
+from fastapi.exceptions import RequestValidationError
+from config import setup_loggers as configure_logging, settings
 from db import engine, Base, get_db
 import asyncio
 import logging
-import time
-import platform
 
 configure_logging(settings.log_level)
 
 app = FastAPI(title="DevNotes API", version="0.1.0")
+
+# ✅ Register middleware
+app.middleware("http")(error_tracking_middleware)
+
+# ✅ Register global exception handler
+app.add_exception_handler(Exception, global_exception_handler)
+app.add_exception_handler(RequestValidationError, global_exception_handler)
 
 # Static + templates
 app.mount("/static", StaticFiles(directory="./static"), name="static")
@@ -20,6 +27,7 @@ templates = Jinja2Templates(directory="templates")
 
 # Include router
 app.include_router(notes.router)
+app.include_router(err_router)
 
 
 @app.get("/")
@@ -30,23 +38,6 @@ async def root(request: Request, db: AsyncSession = Depends(get_db)):
 @app.get("/favicon.ico")
 async def root(request: Request, db: AsyncSession = Depends(get_db)):
     return templates.TemplateResponse("favicon.ico", {"request": request})
-
-# === DASHBOARD METRICS ===
-@app.get("/stats")
-async def get_stats(db: AsyncSession = Depends(get_db)):
-    start = time.perf_counter()
-    notes = await crud.list_notes(db)
-    latency = (time.perf_counter() - start) * 1000
-
-    stats = {
-        "total_notes": len(notes),
-        "latency_ms": round(latency, 2),
-        "environment": get_env() if not None else "dev",
-        "error_count": 0,  # placeholder for now
-        "python_version": platform.python_version(),
-        "platform": platform.system(),
-    }
-    return stats
 
 
 # === STARTUP/SHUTDOWN ===

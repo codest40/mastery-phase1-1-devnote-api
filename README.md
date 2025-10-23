@@ -25,6 +25,12 @@ Dynamic environment detection via Pydantic Settings (local | github | render | a
   Advanced logging architecture:
 Multi-logger setup (audit, error, security, system, access, admin, event) with rotation & stream handlers.
 
+Real-Time Error Tracking & Metrics System:
+Global middleware and exception handler to capture failed responses and backend errors.
+Tracks total error count, last error type, and timestamp (UTC).
+/stats endpoint exposes live metrics: request latency, DB health, environment, platform, Python version.
+/trigger-error endpoint simulates backend failure for testing monitoring setups.
+
 Clean project modularization:
 models.py, crud.py, schemas.py, notes.py (router), main.py, config.py, db.py.
 
@@ -65,6 +71,8 @@ Environment Configuration:	Pydantic Settings, .env handling, environment auto-sw
 
 Logging & Monitoring:	Multi-channel log architecture, RotatingFileHandler, structured logs
 
+Error & Metrics Monitoring:      Custom FastAPI middleware, global exception handling, live error tracking, metrics endpoint (/stats)
+
 Containerization:	Dockerfile optimization, multi-service docker-compose, healthchecks, volumes, networking
 
 DevOps Principles:	Environment isolation, infra as code, build automation, config management
@@ -85,6 +93,8 @@ Environment Abstraction: One config file auto-detecting execution context (local
 Service Orchestration: Using Docker Compose for multi-container coordination before moving to Kubernetes.
 
 Logging & Observability: Structured log streams for monitoring, audit, and error traceability.
+
+Error Resilience: Backend self-monitors runtime failures through /stats API and adaptive error metrics.
 
 Database Resilience: Persistent storage with volumes and container health checks for fault tolerance.
 
@@ -110,6 +120,8 @@ Admin Tool	pgAdmin 4
 Configuration	Pydantic Settings, .env files
 
 Logging	Python Logging Module + Rotating File Handler
+
+Error Monitoring    Custom Error Middleware + Exception Handler + /stats API
 
 Server	Uvicorn (Dev) / Gunicorn (Prod ready)
 
