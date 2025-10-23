@@ -79,7 +79,7 @@ export async function updateNote(id, oldTitle = "", oldContent = "") {
       return;
     }
 
-    // Send PATCH (not PUT) — better for partial updates
+    // Send PATCH insteadv (not PUT) — better for partial updates
     const res = await fetch(`/notes/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
