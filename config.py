@@ -31,26 +31,35 @@ settings = Settings()
 # =========================
 #  AUTO-DETECT ENVIRONMENT
 # =========================
-# If Render sets RENDER=true automatically, else fallback to dev
+# If Render sets RENDER=true automatically
 render_flag = os.environ.get("RENDER", "").lower() == "true"
+aws_flag = os.environ.get("AWS", "").lower() == "true"
+
 if render_flag:
   db_url_internal = os.environ.get("DB_URL_INTERNAL", "")
 
 env = (
     settings.environment
-    or ("render" if render_flag else None)
+    or ("Render(prod)" if render_flag else None)
+    or ("Aws(prod)" if aws_flag else None)
     or os.environ.get("ENVIRONMENT", "")
-    or "local" 
+    or "local(dev)"
 ).lower()
 
-print(f"Environmental Variable Found: {env}")
+def get_env():
+  if env:
+    print(f"Environmental Variable Found: {env}")
+    return env
+  else:
+    return None
+
 
 # =========================
 #   DB SELECTION LOGIC
 # =========================
-if env == "render":
+if env == "render(prod)":
     db_url = settings.db_url_internal
-elif env in ("github", "aws", "cicd"):
+elif env in ("github", "aws(prod)", "cicd"):
     db_url = settings.external_db_url
 else:
     db_url = settings.database_url  # Default local (Docker dev)

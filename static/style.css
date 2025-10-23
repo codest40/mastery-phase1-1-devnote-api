@@ -1,0 +1,172 @@
+/* ===============================
+   BASIC LAYOUT + FONT
+================================*/
+body {
+  font-family: monospace, system-ui, sans-serif;
+  background: #fafafa;
+  margin: 0;
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "dashboard dashboard"
+    "form notes";
+  gap: 16px;
+  min-height: 100vh;
+}
+
+/* Headings – consistent spacing */
+h2, h3 {
+  margin: 0 0 8px;
+}
+
+/* ===============================
+   DASHBOARD SECTION
+================================*/
+#dashboard {
+  grid-area: dashboard;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.metric label {
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+/* ===============================
+   FORM + NOTES SECTION
+================================*/
+#form-section, #notes-section {
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+#form-section {
+  grid-area: form;
+}
+
+#notes-section {
+  grid-area: notes;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+/* ===============================
+   FORM STYLING
+================================*/
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+input[type="text"], textarea {
+  padding: 6px 8px;
+  border: 1px solid #bbb;
+  font-family: monospace;
+  resize: vertical;
+}
+
+button {
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #555;
+}
+
+/* ===============================
+   NOTES DISPLAY
+================================*/
+.note {
+  border-bottom: 1px solid #ddd;
+  padding: 6px 0;
+}
+
+.note:last-child {
+  border: none;
+}
+
+.note-actions {
+  text-align: right;
+}
+
+.note-actions button {
+  font-size: 11px;
+  background: #e0e0e0;
+  color: #111;
+  border: none;
+  margin-left: 4px;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+
+.note-actions button:hover {
+  background: #ccc;
+}
+
+/* ===============================
+   RESPONSIVENESS (Mobile / Tablet)
+================================*/
+
+/* Tablets and below (≤900px) */
+@media (max-width: 900px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "dashboard"
+      "form"
+      "notes";
+  }
+
+  #notes-section {
+    max-height: none;
+  }
+
+  #dashboard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Small devices (≤600px) */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  #dashboard {
+    font-size: 0.9rem;
+  }
+
+  input[type="text"], textarea, button {
+    font-size: 0.9rem;
+  }
+
+  .metric {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
