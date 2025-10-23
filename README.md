@@ -5,7 +5,7 @@
 To establish a solid, production-grade backend foundation combining modern async backend development, DevOps orchestration, containerization, logging, environment management, and real-world deployment architecture.
 This phase ensures every subsequent automation, CI/CD, and microservice skill sits on a strong backend core.
 
-# Core Projects Completed
+# Project Completed
 NAME: DevNotes API – (Async FastAPI + PostgreSQL + Docker + Github Actions)
 
 PURPOSE: Build a fully asynchronous CRUD note-taking API service with a DevOps-ready structure.
