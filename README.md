@@ -1,14 +1,13 @@
 # Phase 1 — Deep Backend Foundation (Backend | DevOps | Automation Mastery Path)
 
+# Project
+NAME: DevNotes API – (Async FastAPI + PostgreSQL + Docker + Github Actions)
+PURPOSE: Build a fully asynchronous CRUD note-taking API service with a DevOps-ready structure.
  
 # Objective
 To establish a solid, production-grade backend foundation combining modern async backend development, DevOps orchestration, containerization, logging, environment management, and real-world deployment architecture.
 This phase ensures every subsequent automation, CI/CD, and microservice skill sits on a strong backend core.
 
-# Project Completed
-NAME: DevNotes API – (Async FastAPI + PostgreSQL + Docker + Github Actions)
-
-PURPOSE: Build a fully asynchronous CRUD note-taking API service with a DevOps-ready structure.
 
 # Key Deliverables:
 
@@ -59,6 +58,7 @@ Healthchecks and service dependencies
 Internal Docker networking: Containers communicate via bridge network (db, web, pgadmin).
 
 API tests via curl / HTTPie / FastAPI docs.
+
 
 # Technical Competencies Acquired
 Category:	Skills Demonstrated

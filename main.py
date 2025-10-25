@@ -45,7 +45,7 @@ async def root(request: Request, db: AsyncSession = Depends(get_db)):
 async def on_startup():
     logging.getLogger("uvicorn").info("Starting up - creating DB tables if not present (dev only)")
     async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+        await conn.run_sync(Base.metadata.create_all)  # Best for Dev only, alembic for prod
 
 @app.on_event("shutdown")
 async def on_shutdown():
