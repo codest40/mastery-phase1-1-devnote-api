@@ -36,7 +36,7 @@ render_flag = os.environ.get("RENDER", "").lower() == "true"
 aws_flag = os.environ.get("AWS", "").lower() == "true"
 
 if render_flag:
-  db_url_internal = os.environ.get("DB_URL_INTERNAL", "")
+  db_url_internal = os.environ.get("DB_URL_EXTERNAL", "")
 
 env = (
     settings.environment
