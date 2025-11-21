@@ -79,6 +79,10 @@ if DB_URL.startswith("postgresql://") and "asyncpg" not in DB_URL:
     DB_URL = DB_URL.replace("postgresql://", "postgresql+asyncpg://", 1)
     print("Auto-converted DB URL to asyncpg dialect for SQLAlchemy async support.")
 
+
+if DB_URL:
+    print(f"DB Environmental Variable Found: DB_URL}")
+
 #if "asyncpg" not in DB_URL:
 #    raise ValueError(f"❌ Invalid DB URL: must use async driver (asyncpg). Got: {db_url}")
 
