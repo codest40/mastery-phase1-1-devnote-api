@@ -31,7 +31,7 @@ services:
       - key: APP_ENV
         value: prod
       - key: DATABASE_URI
-        value: DB_URL_INTERNAL
+        value: DB_URL_EXTERNAL
       - key: SECRET_KEY
         value: SECRET_KEY
 
