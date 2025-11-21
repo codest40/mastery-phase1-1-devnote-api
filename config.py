@@ -81,7 +81,7 @@ if DB_URL.startswith("postgresql://") and "asyncpg" not in DB_URL:
 
 
 if DB_URL:
-    print(f"DB Environmental Variable Found: DB_URL}")
+    print(f"DB Environmental Variable Found: {DB_URL}")
 
 #if "asyncpg" not in DB_URL:
 #    raise ValueError(f"❌ Invalid DB URL: must use async driver (asyncpg). Got: {db_url}")
