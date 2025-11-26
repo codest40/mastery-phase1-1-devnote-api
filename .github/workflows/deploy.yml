@@ -125,7 +125,7 @@ jobs:
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: "❌ DevNotes Deploy Failed"
-          to: "rundailytest@gmail.com"
+          to: ${{ secrets.RECEIVER_MAIL }}
           from: "GitHub CI <no-reply@devnotes.ci>"
           body: |
             Render deployment failed.
