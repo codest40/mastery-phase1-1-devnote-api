@@ -14,8 +14,14 @@ name: CI/CD Pipeline - DevNotes FastAPI
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - "README.md"
+      - "test.py"
   pull_request:
     branches: [ "main" ]
+    paths-ignore:
+      - "README.md"
+      - "test.py"
 
 jobs:
   test_build:
