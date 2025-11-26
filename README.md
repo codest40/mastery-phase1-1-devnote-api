@@ -1,4 +1,4 @@
-# Phase 1 — Deep Backend Foundation (Backend | DevOps | Automation Mastery Path)
+
 
 # Project
 NAME: DevNotes API – (Async FastAPI + PostgreSQL + Docker + Github Actions)
