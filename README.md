@@ -103,7 +103,7 @@ DevOps Lifecycle Readiness: Built foundation for pipeline automation and product
  
 ###  Tech Stack
 
-####Layer	 ####Tools &  ####Technologies
+#### Layer:	 Tools & Technologies
 
 Language	Python 3.11 (Async I/O)
 
