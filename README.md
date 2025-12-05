@@ -4,11 +4,12 @@
 NAME: DevNotes API – (Async FastAPI + PostgreSQL + Docker + Github Actions)
 PURPOSE: Build a fully asynchronous CRUD note-taking API service with a DevOps-ready structure.
  
+---
 ### Objective
 To establish a solid, production-grade backend foundation combining modern async backend development, DevOps orchestration, containerization, logging, environment management, and real-world deployment architecture.
 This phase ensures every subsequent automation, CI/CD, and microservice skill sits on a strong backend core.
 
-
+---
 ### Key Deliverables:
 
 FastAPI (Async) backend with CRUD endpoints (create, read, update, delete) using async/await.
@@ -59,7 +60,7 @@ Internal Docker networking: Containers communicate via bridge network (db, web, 
 
 API tests via curl / HTTPie / FastAPI docs.
 
-
+---
 ### Technical Competencies Acquired
 Category:	Skills Demonstrated
 
@@ -86,6 +87,7 @@ PostgreSQL Admin:	pgAdmin integration, connection health monitoring, persistent 
 Testing & Validation:	API endpoint validation via FastAPI interactive docs and CLI tools
 
 
+---
 ###  Conceptual Understanding Gained
 
 Environment Abstraction: One config file auto-detecting execution context (local, CI/CD, cloud).
@@ -101,6 +103,7 @@ Database Resilience: Persistent storage with volumes and container health checks
 DevOps Lifecycle Readiness: Built foundation for pipeline automation and production deployment monitoring.
 
  
+---
 ###  Tech Stack
 
 #### Layer:	 Tools & Technologies
