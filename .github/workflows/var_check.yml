@@ -9,13 +9,20 @@ on:
 jobs:
   check-env-vars:
     runs-on: ubuntu-latest
+    env:
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASS: ${{ secrets.DB_PASS }}
+      API_KEY: ${{ secrets.API_KEY }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      RENDER_LIVE_URL: ${{ secrets.RENDER_LIVE_URL }}
+      ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
     steps:
       - name: Check required environment variables
         run: |
           REQUIRED_VARS=("DB_USER" "DB_PASS" "API_KEY" "DATABASE_URL" "RENDER_LIVE_URL" "ENVIRONMENT")
 
           for var in "${REQUIRED_VARS[@]}"; do
-            if [ -z "${{ secrets.$var }}" ] && [ -z "${{ env.$var }}" ]; then
+            if [ -z "${!var}" ]; then
               echo "❌ $var is empty or not set!"
               exit 1
             else
