@@ -205,7 +205,7 @@ jobs:
 
           echo "$response" > /tmp/response_code.txt
 
-          if [ "$response" = "202" || "$response" = "201" ]; then
+          if [ "$response" = "202" ] || [ "$response" = "201" ]; then
             echo "Deploy triggered Successfuly"
           else
             echo "Deploy failed with status: $response."
