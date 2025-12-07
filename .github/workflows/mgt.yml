@@ -103,10 +103,10 @@ jobs:
 
       - name: Run API container
         run: |
-          docker run -p 8000:8000 --name devnotes \
+          docker run -d -p 8000:8000 --name devnotes \
+            --add-host=host.docker.internal:host-gateway \
             --env DATABASE_URL=postgresql://postgres:postgres@host.docker.internal:5432/devnotes_db \
             devnotes-test
-          docker run --rm devnotes-test env | grep DATABASE_URL
 
           # Container may take longer to come up
           for i in {1..30}; do
