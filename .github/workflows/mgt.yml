@@ -231,9 +231,11 @@ jobs:
             echo "::set-output name=result::failure"
           fi
 
-  # -----------------------------
-  # 6. Daily Summary Email
-  # -----------------------------
+
+
+# -----------------------------
+# 6. Daily Summary Email
+# -----------------------------
   daily_summary:
     runs-on: ubuntu-latest
     needs:
@@ -245,16 +247,36 @@ jobs:
     steps:
       - name: Generate summary table
         run: |
-          SUMMARY="Pipeline Summary for $(date -u)\n\n"
+          SUMMARY="📊 Pipeline Summary for $(date -u)\n\n"
           SUMMARY+="| Job | Status |\n"
           SUMMARY+="|-----|--------|\n"
-          SUMMARY+="| Python Checks     | ${{ needs.python_checks.outputs.status }} |\n"
-          SUMMARY+="| Dependency Scan   | ${{ needs.dependency_scan.outputs.status }} |\n"
-          SUMMARY+="| Docker + API Test | ${{ needs.docker_build_test.outputs.status }} |\n"
-          SUMMARY+="| URL Monitor       | ${{ needs.url_monitor.outputs.status }} |\n"
-          SUMMARY+="| Deploy            | ${{ needs.deploy.outputs.status }} |\n"
+
+          # Function to add emoji based on status
+          status_emoji() {
+            if [ "$1" = "success" ]; then
+              echo "✅ $1"
+            else
+              echo "❌ $1"
+            fi
+          }
+
+          SUMMARY+="| Python Checks     | $(status_emoji "${{ needs.python_checks.outputs.status }}") |\n"
+          SUMMARY+="| Dependency Scan   | $(status_emoji "${{ needs.dependency_scan.outputs.status }}") |\n"
+          SUMMARY+="| Docker + API Test | $(status_emoji "${{ needs.docker_build_test.outputs.status }}") |\n"
+          SUMMARY+="| URL Monitor       | $(status_emoji "${{ needs.url_monitor.outputs.status }}") |\n"
+          SUMMARY+="| Deploy            | $(status_emoji "${{ needs.deploy.outputs.status }}") |\n"
+
           echo -e "$SUMMARY" > summary.txt
           cat summary.txt
+
+      - name: Load summary into env
+        id: load_summary
+        run: |
+          SUMMARY_CONTENT="$(cat summary.txt)"
+          SUMMARY_CONTENT="${SUMMARY_CONTENT//'%'/'%25'}"
+          SUMMARY_CONTENT="${SUMMARY_CONTENT//$'\n'/'%0A'}"
+          SUMMARY_CONTENT="${SUMMARY_CONTENT//$'\r'/'%0D'}"
+          echo "content=$SUMMARY_CONTENT" >> $GITHUB_OUTPUT
 
       - name: Send summary email
         uses: dawidd6/action-send-mail@v3
@@ -266,6 +288,5 @@ jobs:
           subject: "📊 Daily DevNotes Pipeline Summary"
           to: ${{ secrets.RECEIVER_MAIL }}
           from: "GitHub CI <no-reply@devnotes.ci>"
-          body: |
-            $(cat summary.txt)
+          body: ${{ steps.load_summary.outputs.content }}
 
