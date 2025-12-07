@@ -22,10 +22,11 @@ jobs:
           REQUIRED_VARS=("DB_USER" "DB_PASS" "API_KEY" "DATABASE_URL" "RENDER_LIVE_URL" "ENVIRONMENT")
 
           for var in "${REQUIRED_VARS[@]}"; do
-            if [ -z "${!var}" ]; then
+            value="${!var}"
+            if [ -z "$value" ]; then
               echo "❌ $var is empty or not set!"
             else
-              echo "✅ $var is set"
+              echo "✅ $var is set: $value"
             fi
           done
 
