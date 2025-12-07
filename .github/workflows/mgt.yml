@@ -86,7 +86,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: devnotes_test
+          POSTGRES_DB: devnotes_db
         ports:
           - 5432:5432
         options: >-
@@ -103,8 +103,8 @@ jobs:
 
       - name: Run API container
         run: |
-          docker run -d -p 8000:8000 --name devnotes \
-            --env DATABASE_URL=postgresql://postgres:postgres@postgres:5432/devnotes_test \
+          docker run -p 8000:8000 --name devnotes \
+            --env DATABASE_URL=postgresql://postgres:postgres@postgres:5432/devnotes_db \
             devnotes-test
 
           # Container may take longer to come up
