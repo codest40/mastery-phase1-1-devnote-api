@@ -142,7 +142,12 @@ jobs:
       status: ${{ steps.set_status.outputs.result }}
     steps:
       - name: Check Production URL
-        run: curl -X "${{ secrets.RENDER_LIVE_URL }}/health" || exit 1
+        run: |
+          if curl -X "${{ secrets.RENDER_LIVE_URL }}/health"; then
+  exit 0
+else
+  exit 1
+fi
 
       - name: Set job status
         id: set_status
