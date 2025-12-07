@@ -35,6 +35,10 @@ async def root(request: Request, db: AsyncSession = Depends(get_db)):
     notes = await crud.list_notes(db)
     return templates.TemplateResponse("notes.html", {"request": request, "notes": notes})
 
+@app.get("/health")
+async def health():
+    return {"mgs": "Alive"}
+
 @app.get("/favicon.ico")
 async def root(request: Request, db: AsyncSession = Depends(get_db)):
     return templates.TemplateResponse("favicon.ico", {"request": request})
@@ -45,7 +49,7 @@ async def root(request: Request, db: AsyncSession = Depends(get_db)):
 async def on_startup():
     logging.getLogger("uvicorn").info("Starting up - creating DB tables if not present (dev only)")
     async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)  # Best for Dev only, alembic for prod
+        await conn.run_sync(Base.metadata.create_all)
 
 @app.on_event("shutdown")
 async def on_shutdown():
