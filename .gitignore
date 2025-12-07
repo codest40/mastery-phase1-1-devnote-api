@@ -7,10 +7,6 @@ __pycache__/
 logs/
 
 info
-test
-test.py
-test_note.py
-test*
 thrash/
 
 push.sh
