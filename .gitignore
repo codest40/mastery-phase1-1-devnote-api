@@ -12,3 +12,5 @@ test.py
 test_note.py
 test*
 thrash/
+
+push.sh
