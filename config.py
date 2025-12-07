@@ -60,7 +60,7 @@ def get_env():
 if env == "render(prod)":
     db_url = settings.db_url_internal
 elif env in ("github", "aws(prod)", "cicd"):
-    db_url = settings.external_db_url
+    db_url = settings.database_url
 else:
     db_url = settings.database_url  # Default local (Docker dev)
 
