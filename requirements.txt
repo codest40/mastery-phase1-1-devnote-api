@@ -8,6 +8,8 @@ alembic
 pydantic
 pydantic-settings
 python-dotenv
-pytest
 httpx
 gunicorn
+flake8
+pytest
+pytest-cov
