@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ENVIRONMENT: ${{ secrets.ENVIRONMENT }}     # For app codes db config
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
     outputs:
       status: ${{ steps.set_status.outputs.result }}
     steps:
