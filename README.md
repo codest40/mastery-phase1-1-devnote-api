@@ -1,8 +1,15 @@
 
 
 # Project
-NAME: DevNotes API – (Async FastAPI + PostgreSQL + Docker + Github Actions)
-PURPOSE: Build a fully asynchronous CRUD note-taking API service with a DevOps-ready structure.
+DEVNOTE PROJECT
+
+---
+### Name
+DevNotes API – (Async FastAPI + PostgreSQL + Docker + Github Actions +)
+
+---
+### Purpose
+Build a fully asynchronous CRUD note-taking API service with a DevOps-ready structure, arranged and deployed specifically for RENDER (paas) type of service.
  
 ---
 ### Objective
