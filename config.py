@@ -64,9 +64,6 @@ elif env in ("github", "aws(prod)", "cicd"):
 else:
     db_url = settings.database_url  # Default local (Docker dev)
 
-if not db_url:
-  db_url = "postgresql://timzap_two_db_user:zeDEkkhbAMLEyOqwhWdyLfQQprXiGnO2@dpg-d4g25f15pdvs739tirn0-a.oregon-postgres.render.com/timzap_two_db"
-
 DB_URL = db_url
 
 # =========================

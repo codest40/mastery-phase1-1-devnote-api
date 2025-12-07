@@ -13,6 +13,8 @@ jobs:
   # -----------------------------
   python_checks:
     runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: ${{ secrets.ENVIRONMENT }}     # For app codes db config
     outputs:
       status: ${{ steps.set_status.outputs.result }}
     steps:
