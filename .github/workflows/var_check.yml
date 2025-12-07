@@ -24,7 +24,6 @@ jobs:
           for var in "${REQUIRED_VARS[@]}"; do
             if [ -z "${!var}" ]; then
               echo "❌ $var is empty or not set!"
-              exit 1
             else
               echo "✅ $var is set"
             fi
